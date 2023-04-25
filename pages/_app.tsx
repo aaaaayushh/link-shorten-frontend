@@ -21,8 +21,13 @@ export default function App({
           draggable
           pauseOnHover
         />
-        <Navbar />
+        <div className="hidden md:block">
+          <Navbar />
+        </div>{" "}
         <Component {...pageProps} />
+        <div className="block md:hidden fixed bottom-0 z-10 w-full">
+          <Navbar />
+        </div>
       </SessionProvider>
     </>
   );
