@@ -1,38 +1,37 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Link Shortener Frontend
 
-## Getting Started
+## Introduction
 
-First, run the development server:
+This is the frontend for the link-shortener application built as an assignment for FarMart. It is built using NextJS.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-```
+## Features
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+This application supports the following features:
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+- User authentication: Users can create their own account using their emailId and password.
+- File upload: Users(both authorized and unauthorized) can upload files(only images of type jpegs,pngs and gifs of upto 5MB) and the service will upload it on an S3 storage.
+- Bit.ly link generation: The service will provide a Bit.ly link to access the uploaded file.
+- User dashboard: Authenticated users can see all their generated links and uploaded files.
+- Delete uploaded files: Authenticated users can delete their uploaded files.
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+## Features I wanted to implement but couldn't because of time constraints
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+- Auto delete files after a set amount of time which can be fixed for unauthenticated users, and configurable for authenticated users.
+- Protect against cross-site scripting (XSS) and cross-site request forgery (CSRF) attacks. I have not implemented these protections before, and would have liked to explore how it is done in a production setting.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+#### This application is hosted on :
 
-## Learn More
+#### You can find the backend repository on: https://github.com/aaaaayushh/link-shortener-backend
 
-To learn more about Next.js, take a look at the following resources:
+#### Run locally
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+To run this application locally:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+1. Clone this repository on your device.
+2. Install the dependencies using the command `npm i`(You will require Node installed on your device to run this application)
+3. Create an .env file and set the following environment variables:
+   - NEXT_PUBLIC_SERVER: url of the backend service.
+   - NEXT_PUBLIC_MONGODB_URI: url of your mongodb instance.(You can either host it locally or use Atlas)
+   - NEXT_PUBLIC_MONGODB_DB: name of your database.
+   - NEXT_AUTH_SECRET: use a random string as the secret for the next-auth package.
+4. Once the dependencies are installed, run using `npm run dev`
