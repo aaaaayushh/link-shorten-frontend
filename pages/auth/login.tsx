@@ -23,7 +23,7 @@ const Login = () => {
     await signIn("credentials", {
       email,
       password,
-      callbackUrl: "http://localhost:3001",
+      callbackUrl: process.env.NEXT_PUBLIC_SERVER,
       redirect: false,
     }).then(function (result) {
       console.log(result);
