@@ -17,7 +17,7 @@ export default function FileUpload() {
     const file = event.target.files[0];
 
     // Check file size
-    if (file.size > 5242880) {
+    if (file?.size > 5242880) {
       // 5 MB in bytes
       setFileError("File is too big! File size limit : 5 MB");
       return;

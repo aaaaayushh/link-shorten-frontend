@@ -17,26 +17,3 @@ export default function Home() {
     </div>
   );
 }
-
-// export async function getServerSideProps(context: any) {
-//   try {
-//     const session = await getServerSession(
-//       context.req,
-//       context.res,
-//       authOptions
-//     );
-
-//     if (!session) {
-//       return {
-//         redirect: {
-//           destination: "/auth/login",
-//           permanent: false,
-//         },
-//       };
-//     }
-//     return { props: {} };
-//   } catch (err) {
-//     console.log("error in get session", err);
-//     return { props: {} };
-//   }
-// }

@@ -2,10 +2,9 @@ import NextAuth, { NextAuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import { compare } from "bcryptjs";
 import { connectToDatabase } from "../../../lib/mongodb";
-import { redirect } from "next/dist/server/api-utils";
 
 export const authOptions: NextAuthOptions = {
-  //Configure JWT
+  //using jwt auth
   session: {
     strategy: "jwt",
     maxAge: 24 * 60 * 60,
@@ -15,7 +14,7 @@ export const authOptions: NextAuthOptions = {
       return baseUrl;
     },
   },
-  //Specify Provider
+  //using only email/password auth for this application, assuming user will provide valid email so no verification added
   providers: [
     CredentialsProvider({
       name: "link-shortener",
@@ -31,7 +30,6 @@ export const authOptions: NextAuthOptions = {
           const result: any = await users.findOne({
             email: credentials.email,
           });
-          console.log("result", result);
           //Not found - send error res
           if (!result) {
             throw new Error("No user found with the email");
